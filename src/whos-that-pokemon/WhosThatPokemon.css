@@ -1,8 +1,45 @@
 body {
-  background: #eee;
+  /* background: url("./images/bg.png") repeat; */
+  background: white;
+}
+
+h1 {
+  font-family: "Press Start 2P";
+  text-shadow: -1px 1px 0px hsla(0, 0%, 0%, 1);
 }
 
 .poke-position {
   margin-left: 13%;
   margin-bottom: 5%;
+}
+
+.poke-name-position {
+  margin-left: 4%;
+  margin-bottom: 12%;
+  width: 33%;
+  font-family: "Luckiest Guy", cursive;
+  font-weight: 700;
+  color: white;
+  text-shadow: -3px 3px 2px hsla(0, 0%, 0%, 0.33);
+  letter-spacing: 3px;
+  transform: rotate(7deg);
+}
+
+/* .poke-background {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    15deg,
+    #eee 9.9%,
+    #d5002b 10%,
+    #d5002b 20%,
+    #f70036 20%,
+    #f70036 80%,
+    #d5002b 80%,
+    #d5002b 89.9%,
+    #eee 90%
+  );
+} */
+.poke-background {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(15deg, #f70036 0%, #ff3763 66%, #cc0029 100%);
 }
