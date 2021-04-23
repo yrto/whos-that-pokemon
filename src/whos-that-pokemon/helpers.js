@@ -10,8 +10,11 @@ const formatPokemonData = (rawPokemonData) => ({
 export const fetchCleanPokemonData = async (pokemonId) => {
   const response = await fetch(generatePokeApiUrl(pokemonId));
   const rawPokemonData = await response.json();
-  // console.log(rawPokemonData);
   const pokemonData = formatPokemonData(rawPokemonData);
   console.log(pokemonData);
   return pokemonData;
+};
+
+export const randomIntFromInterval = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 };

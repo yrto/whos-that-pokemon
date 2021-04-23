@@ -1,68 +1,54 @@
 import React, { useState } from "react";
 
 export default function PokeRange({
-  mistery,
-  setMistery,
-  setGuess,
-  setTempGuess,
-  setShow,
+  minMax,
+  setMinMax,
+  setMenu,
+  setMisteryPokemon,
 }) {
   //
-  const [range, setRange] = useState({
-    min: mistery.min,
-    max: mistery.max,
-  });
+  const [newMinMax, setNewMinMax] = useState(minMax);
 
-  const handleSubmit = async (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    await setGuess("");
-    await setTempGuess("");
-    await setShow(3);
-    await setMistery(() => ({
-      ...mistery,
-      hide: true,
-    }));
-    let newId = Math.floor(Math.random() * (range.max - range.min) + range.min);
-    while (newId === mistery.id) {
-      newId = Math.floor(Math.random() * (range.max - range.min) + range.min);
-    }
-    setMistery({
-      id: newId,
-      min: range.min,
-      max: range.max,
-      hide: false,
-    });
+    setMinMax(newMinMax);
+    setMisteryPokemon({});
+    setMenu(1);
   };
 
   const handleChange = (event) => {
     const name = event.target.name;
-    setRange({
-      ...range,
+    setNewMinMax({
+      ...newMinMax,
       [name]: parseInt(event.target.value),
     });
   };
 
   return (
     <form
-      className="flex flex-col text-center text-lg rounded-xl space-y-4 shadow-lg p-4 bg-white"
+      className="flex flex-col text-center text-lg rounded-xl space-y-4"
       onSubmit={handleSubmit}
     >
-      <p className="leading-tight">Select the Pokémon range:</p>
+      <p className="leading-tight">Select a Pokémon range:</p>
       <div className="flex space-x-4 justify-center items-center">
         <input
           type="number"
           name="min"
           className="w-full p-2 pl-3 rounded-md text-black focus:border-gray-400 focus:ring-2 focus:ring-gray-200 focus:outline-none border border-gray-300"
-          value={range.min}
+          value={newMinMax.min}
           onChange={handleChange}
+          min={1}
+          max={898}
         />
         <p>to</p>
         <input
           type="number"
           name="max"
           className="w-full p-2 pl-3 rounded-md text-black focus:border-gray-400 focus:ring-2 focus:ring-gray-200 focus:outline-none border border-gray-300"
-          value={range.max}
+          value={newMinMax.max}
           onChange={handleChange}
+          min={1}
+          max={898}
         />
       </div>
       <button

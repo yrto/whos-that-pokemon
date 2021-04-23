@@ -4,103 +4,69 @@ import "./WhosThatPokemon.css";
 import TvSet from "./TvSet";
 import PokeRange from "./PokeRange";
 import PokeGuess from "./PokeGuess";
-import { fetchCleanPokemonData } from "./helpers";
-import win from "./images/win.gif";
+import PokeAgain from "./PokeAgain";
 
 const WhosThatPokemonContainer = () => {
   //
-  const [mistery, setMistery] = useState({
+  const [minMax, setMinMax] = useState({
     min: 1,
     max: 151,
-    hide: false,
   });
 
+  const [misteryPokemon, setMisteryPokemon] = useState({});
+
+  const [menu, setMenu] = useState(1);
   const [guess, setGuess] = useState("");
-  const [tempGuess, setTempGuess] = useState("");
-
-  const [show, setShow] = useState(1);
-
-  const found = parseInt(guess) === mistery.id || guess === mistery.name;
+  const [found, setFound] = useState(false);
+  const [fail, setFail] = useState(false);
 
   useEffect(() => {
-    if (mistery.id) {
-      fetchCleanPokemonData(mistery.id)
-        .then((data) => setMistery((mistery) => ({ ...mistery, ...data })))
-        .catch(console.log);
-    }
-  }, [mistery.id]);
-
-  useEffect(() => {
-    if (found && !show) setShow(2);
-  }, [found, show]);
-
-  useEffect(() => {
-    if (show === 4) setGuess(mistery.id);
-  }, [show, mistery.id]);
+    if (found) setMenu(2);
+  }, [found]);
 
   return (
     <div className="min-h-screen p-8 flex flex-col sm:p-12 poke-background">
+      {/* main container */}
       <div className="w-full max-w-3xl mx-auto space-y-8 sm:space-y-12">
+        {/* header */}
         <h1 className="text-center text-4xl font-bold uppercase text-white">
           Who's That Pokémon?
         </h1>
-        <TvSet mistery={mistery} found={found} show={show} />
-        <div className="font-black px-8 max-w-sm mx-auto">
-          {show === 1 && (
-            <PokeRange
-              mistery={mistery}
-              setMistery={setMistery}
+        {/* tv set */}
+        <TvSet misteryPokemon={misteryPokemon} found={found} menu={menu} />
+        {/* menus */}
+        <div className="font-black max-w-sm mx-auto rounded-xl shadow-lg p-4 bg-white">
+          {/* 1. guess */}
+          {menu === 1 && (
+            <PokeGuess
+              minMax={minMax}
+              misteryPokemon={misteryPokemon}
+              setMisteryPokemon={setMisteryPokemon}
               guess={guess}
               setGuess={setGuess}
-              setTempGuess={setTempGuess}
-              setShow={setShow}
+              fail={fail}
+              setFail={setFail}
+              setFound={setFound}
             />
           )}
-          {show === 2 && (
-            <div className="rounded-xl shadow-lg p-4 bg-white">
-              <img
-                src={win}
-                alt="happy pikachu"
-                className="mx-auto mb-4 rounded-md w-1/2"
-              />
-              <button
-                className="py-2 rounded-md font-black w-full border border-gray-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-100"
-                onClick={() => {
-                  setShow(1);
-                  setMistery({
-                    ...mistery,
-                    hide: true,
-                  });
-                }}
-              >
-                Go again?
-              </button>
-            </div>
-          )}
-          {show === 3 && (
-            <PokeGuess
-              setGuess={setGuess}
-              tempGuess={tempGuess}
-              setTempGuess={setTempGuess}
-              found={found}
-              setShow={setShow}
+          {/* 2. again */}
+          {menu === 2 && (
+            <PokeAgain
+              fail={fail}
+              setFail={setFail}
+              setFound={setFound}
+              setMenu={setMenu}
+              setMisteryPokemon={setMisteryPokemon}
             />
           )}
-          {show === 4 && (
-            <div className="rounded-xl shadow-lg p-4 bg-white">
-              <button
-                className="py-2 rounded-md font-black w-full border border-gray-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-100"
-                onClick={() => {
-                  setShow(1);
-                  setMistery({
-                    ...mistery,
-                    hide: true,
-                  });
-                }}
-              >
-                Go again?
-              </button>
-            </div>
+          {/* 3. range */}
+          {menu === 3 && (
+            <PokeRange
+              minMax={minMax}
+              setMinMax={setMinMax}
+              setMenu={setMenu}
+              setMisteryPokemon={setMisteryPokemon}
+            />
           )}
         </div>
       </div>

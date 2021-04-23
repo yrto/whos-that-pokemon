@@ -1,15 +1,25 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import tvSet from "./images/tv-set.png";
 import staticNoise from "./images/static-noise.gif";
 import poke1 from "./images/poke1.gif";
 import poke2 from "./images/poke2.gif";
 
-export default function TvSet({ mistery, found, show }) {
+export default function TvSet({ misteryPokemon, found, menu }) {
+  //
+  const [showStatic, setShowStatic] = useState(false);
+
+  useEffect(() => {
+    setShowStatic(true);
+    setTimeout(() => {
+      setShowStatic(false);
+    }, 1500);
+  }, [misteryPokemon]);
+
   return (
     <div className="w-full">
       <div className="relative">
         <img src={tvSet} alt="old tv set" className="absolute z-50 w-full" />
-        {show === 1 && (
+        {(menu === 3 || showStatic) && (
           <img
             src={staticNoise}
             alt="static noise"
@@ -17,11 +27,11 @@ export default function TvSet({ mistery, found, show }) {
           />
         )}
         <div className="absolute flex w-full h-full z-10">
-          {mistery.img && (
+          {misteryPokemon !== {} && (
             <>
               <img
-                src={mistery.img}
-                alt="static noise"
+                src={misteryPokemon.img}
+                alt="who's that pokémon?"
                 className={`w-1/4 poke-position self-center filter transition ${
                   found ? "" : "brightness-0"
                 }`}
@@ -30,7 +40,7 @@ export default function TvSet({ mistery, found, show }) {
                 <p className="self-center text-center poke-name-position uppercase leading-5 text-lg sm:text-3xl md:text-4xl">
                   It's
                   <br />
-                  {mistery.name}!
+                  {misteryPokemon.name}!
                 </p>
               )}
             </>
@@ -39,13 +49,13 @@ export default function TvSet({ mistery, found, show }) {
         {found && (
           <img
             src={poke2}
-            alt="who's that pokémon reveal background"
+            alt="who's that pokémon? reveal background"
             className="absolute z-0 w-full"
           />
         )}
         <img
           src={poke1}
-          alt="who's that pokémon mistery background"
+          alt="who's that pokémon? mistery background"
           className="z-0 w-full"
         />
       </div>
