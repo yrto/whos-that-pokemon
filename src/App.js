@@ -10,6 +10,9 @@ function App() {
         <Route exact={true} path="/">
           <WhosThatPokemonContainer />
         </Route>
+        <Route path="/:minRange/:maxRange/">
+          <WhosThatPokemonContainer />
+        </Route>
         <Route path="*">404</Route>
       </Switch>
     </Router>

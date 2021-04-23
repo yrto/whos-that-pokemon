@@ -37,8 +37,10 @@ export default function TvSet({ misteryPokemon, found, menu, lang }) {
                 }`}
               />
               {found && (
-                <p className="self-center text-center poke-name-position uppercase leading-5 text-lg sm:text-3xl md:text-4xl">
-                  {lang.tv}
+                <p className="self-center text-center poke-name-position uppercase leading-3 text-lg sm:text-3xl md:text-4xl">
+                  <span className="text-sm sm:text-xl md:text-3xl">
+                    N°{misteryPokemon.id}
+                  </span>
                   <br />
                   {misteryPokemon.name}!
                 </p>

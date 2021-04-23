@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import "./WhosThatPokemon.css";
 
 import TvSet from "./TvSet";
@@ -10,9 +11,11 @@ import { english, portuguese } from "./langs";
 
 const WhosThatPokemonContainer = () => {
   //
+  const { minRange, maxRange } = useParams();
+
   const [minMax, setMinMax] = useState({
-    min: 1,
-    max: 151,
+    min: minRange >= 1 && minRange < maxRange ? minRange : 1,
+    max: maxRange <= 898 && maxRange > minRange ? maxRange : 151,
   });
 
   const [misteryPokemon, setMisteryPokemon] = useState({});
