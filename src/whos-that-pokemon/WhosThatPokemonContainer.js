@@ -5,7 +5,8 @@ import TvSet from "./TvSet";
 import PokeRange from "./PokeRange";
 import PokeGuess from "./PokeGuess";
 import PokeAgain from "./PokeAgain";
-import { ArrowUpIcon, MarkGithubIcon } from "@primer/octicons-react";
+import { MarkGithubIcon } from "@primer/octicons-react";
+import { english, portuguese } from "./langs";
 
 const WhosThatPokemonContainer = () => {
   //
@@ -21,6 +22,13 @@ const WhosThatPokemonContainer = () => {
   const [found, setFound] = useState(false);
   const [fail, setFail] = useState(false);
 
+  const [lang, setLang] = useState(() => {
+    const langStorage = localStorage.getItem("whos-that-language");
+    if (langStorage === "english") return english;
+    if (langStorage === "portuguese") return portuguese;
+    return english;
+  });
+
   useEffect(() => {
     if (found) setMenu(2);
   }, [found]);
@@ -30,11 +38,16 @@ const WhosThatPokemonContainer = () => {
       {/* main container */}
       <div className="w-full max-w-3xl mx-auto space-y-8 sm:space-y-12">
         {/* header */}
-        <h1 className="text-center text-4xl font-bold uppercase text-white">
-          Who's That Pokémon?
+        <h1 className="text-center text-2xl sm:text-4xl font-bold uppercase text-white">
+          {lang.h1}
         </h1>
         {/* tv set */}
-        <TvSet misteryPokemon={misteryPokemon} found={found} menu={menu} />
+        <TvSet
+          misteryPokemon={misteryPokemon}
+          found={found}
+          menu={menu}
+          lang={lang}
+        />
         {/* menus */}
         <div className="font-black max-w-sm mx-auto rounded-xl p-4 bg-white">
           {/* 1. guess */}
@@ -48,6 +61,7 @@ const WhosThatPokemonContainer = () => {
               fail={fail}
               setFail={setFail}
               setFound={setFound}
+              lang={lang}
             />
           )}
           {/* 2. again */}
@@ -58,6 +72,7 @@ const WhosThatPokemonContainer = () => {
               setFound={setFound}
               setMenu={setMenu}
               setMisteryPokemon={setMisteryPokemon}
+              lang={lang}
             />
           )}
           {/* 3. range */}
@@ -67,13 +82,38 @@ const WhosThatPokemonContainer = () => {
               setMinMax={setMinMax}
               setMenu={setMenu}
               setMisteryPokemon={setMisteryPokemon}
+              lang={lang}
             />
           )}
         </div>
-        <div className="text-white text-center">
+        <div className="text-red-800 text-center text-sm">
           <a href="https://github.com/yrto/whos-that-pokemon">
-            <MarkGithubIcon verticalAlign="middle" />
+            <MarkGithubIcon verticalAlign="middle" size="medium" />
           </a>
+        </div>
+        <div className="text-red-800 text-center text-sm space-x-4">
+          <button
+            onClick={() => {
+              setLang(english);
+              localStorage.setItem("whos-that-language", "english");
+            }}
+            className={`font-bold focus:outline-none px-1 rounded ${
+              lang === english ? "bg-red-800 text-white" : ""
+            }`}
+          >
+            EN-US
+          </button>
+          <button
+            onClick={() => {
+              setLang(portuguese);
+              localStorage.setItem("whos-that-language", "portuguese");
+            }}
+            className={`font-bold focus:outline-none px-1 rounded ${
+              lang === portuguese ? "bg-red-800 text-white" : ""
+            }`}
+          >
+            PT-BR
+          </button>
         </div>
       </div>
     </div>

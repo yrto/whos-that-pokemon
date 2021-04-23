@@ -5,6 +5,7 @@ export default function PokeRange({
   setMinMax,
   setMenu,
   setMisteryPokemon,
+  lang,
 }) {
   //
   const [newMinMax, setNewMinMax] = useState(minMax);
@@ -29,7 +30,7 @@ export default function PokeRange({
       className="flex flex-col text-center text-lg rounded-xl space-y-4"
       onSubmit={handleSubmit}
     >
-      <p className="leading-tight">Select a Pokémon range:</p>
+      <p className="leading-tight">{lang.rangeLabel}</p>
       <div className="flex space-x-4 justify-center items-center">
         <input
           type="number"
@@ -40,7 +41,7 @@ export default function PokeRange({
           min={1}
           max={898}
         />
-        <p>to</p>
+        <p>{lang.rangeMiddle}</p>
         <input
           type="number"
           name="max"
@@ -55,7 +56,7 @@ export default function PokeRange({
         type="submit"
         className="py-2 rounded-md bg-red-500 text-white w-full font-black hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
       >
-        Let's go!
+        {lang.rangeButton}
       </button>
     </form>
   );

@@ -9,6 +9,7 @@ export default function PokeAgain({
   setFound,
   setMenu,
   setMisteryPokemon,
+  lang,
 }) {
   return (
     <div>
@@ -36,7 +37,7 @@ export default function PokeAgain({
             setMenu(3);
           }}
         >
-          Change range
+          {lang.againRange}
         </button>
         <button
           className="py-2 rounded-md bg-red-500 text-white w-full font-black hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
@@ -47,7 +48,7 @@ export default function PokeAgain({
             setMenu(1);
           }}
         >
-          Go again?
+          {lang.againGoAgain}
         </button>
       </div>
     </div>

@@ -4,7 +4,7 @@ import staticNoise from "./images/static-noise.gif";
 import poke1 from "./images/poke1.gif";
 import poke2 from "./images/poke2.gif";
 
-export default function TvSet({ misteryPokemon, found, menu }) {
+export default function TvSet({ misteryPokemon, found, menu, lang }) {
   //
   const [showStatic, setShowStatic] = useState(false);
 
@@ -38,7 +38,7 @@ export default function TvSet({ misteryPokemon, found, menu }) {
               />
               {found && (
                 <p className="self-center text-center poke-name-position uppercase leading-5 text-lg sm:text-3xl md:text-4xl">
-                  It's
+                  {lang.tv}
                   <br />
                   {misteryPokemon.name}!
                 </p>

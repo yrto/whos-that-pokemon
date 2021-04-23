@@ -10,6 +10,7 @@ export default function PokeGuess({
   fail,
   setFail,
   setFound,
+  lang,
 }) {
   //
   // fetch API on mount
@@ -62,7 +63,7 @@ export default function PokeGuess({
             fail &&
             "border-red-300 bg-red-100 placeholder-red-400 focus:ring-red-100 focus:border-red-400"
           }`}
-          placeholder="Name or number"
+          placeholder={lang.guessInput}
           value={guess}
           onChange={handleChange}
         />
@@ -70,14 +71,14 @@ export default function PokeGuess({
           type="submit"
           className="mt-2 py-2 rounded-md bg-red-500 text-white w-full font-black hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
         >
-          I know it!
+          {lang.guessButton}
         </button>
       </form>
       <button
         className="leading-tight text-sm mt-4 max-w-max mx-auto px-2 focus:outline-none rounded focus:ring-2 focus:ring-gray-200"
         onClick={handleGiveUp}
       >
-        Give up
+        {lang.guessGiveUp}
       </button>
     </div>
   );
