@@ -5,6 +5,7 @@ import TvSet from "./TvSet";
 import PokeRange from "./PokeRange";
 import PokeGuess from "./PokeGuess";
 import PokeAgain from "./PokeAgain";
+import { ArrowUpIcon, MarkGithubIcon } from "@primer/octicons-react";
 
 const WhosThatPokemonContainer = () => {
   //
@@ -68,6 +69,11 @@ const WhosThatPokemonContainer = () => {
               setMisteryPokemon={setMisteryPokemon}
             />
           )}
+        </div>
+        <div className="text-white text-center">
+          <a href="https://github.com/yrto/whos-that-pokemon">
+            <MarkGithubIcon verticalAlign="middle" />
+          </a>
         </div>
       </div>
     </div>
