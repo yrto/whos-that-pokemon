@@ -5,7 +5,7 @@ body {
 
 h1 {
   font-family: "Press Start 2P";
-  text-shadow: -1px 1px 0px hsla(0, 0%, 0%, 1);
+  text-shadow: -2px 2px 0px hsla(0, 0%, 0%, 1);
 }
 
 .poke-position {
@@ -20,8 +20,8 @@ h1 {
   font-family: "Luckiest Guy", cursive;
   font-weight: 700;
   color: white;
-  text-shadow: -3px 3px 2px hsla(0, 0%, 0%, 0.33);
-  letter-spacing: 3px;
+  text-shadow: -2px 2px 2px hsla(0, 0%, 0%, 0.33);
+  letter-spacing: 2px;
   transform: rotate(7deg);
 }
 

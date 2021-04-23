@@ -39,7 +39,7 @@ export default function PokeAgain({
           Change range
         </button>
         <button
-          className="py-2 rounded-md font-black w-full border border-gray-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-100"
+          className="py-2 rounded-md bg-red-500 text-white w-full font-black hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
           onClick={() => {
             setFail(false);
             setFound(false);

@@ -33,7 +33,7 @@ export default function PokeGuess({
     event.preventDefault();
     if (
       parseInt(guess) !== misteryPokemon.id &&
-      guess !== misteryPokemon.name
+      guess.toLowerCase() !== misteryPokemon.name
     ) {
       setGuess("");
       setFail(true);

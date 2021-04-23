@@ -36,7 +36,7 @@ const WhosThatPokemonContainer = () => {
         {/* tv set */}
         <TvSet misteryPokemon={misteryPokemon} found={found} menu={menu} />
         {/* menus */}
-        <div className="font-black max-w-sm mx-auto rounded-xl shadow-lg p-4 bg-white">
+        <div className="font-black max-w-sm mx-auto rounded-xl p-4 bg-white">
           {/* 1. guess */}
           {menu === 1 && (
             <PokeGuess
