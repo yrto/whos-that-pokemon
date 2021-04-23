@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { fetchCleanPokemonData, randomIntFromInterval } from "./helpers";
+import { fetchCleanPokemonData, randomIntFromInterval } from "../utils/helpers";
 
 export default function PokeGuess({
   minMax,
@@ -11,6 +11,7 @@ export default function PokeGuess({
   setFail,
   setFound,
   lang,
+  handleChange,
 }) {
   //
   // fetch API on mount
@@ -25,10 +26,6 @@ export default function PokeGuess({
   }, []);
 
   // manage form
-
-  const handleChange = (event) => {
-    setGuess(event.target.value);
-  };
 
   const handleSubmit = (event) => {
     event.preventDefault();

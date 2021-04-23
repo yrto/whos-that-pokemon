@@ -1,7 +1,8 @@
 import React from "react";
 
-import win from "./images/win.gif";
-import lose from "./images/lose.gif";
+import win from "./../images/win.gif";
+import lose from "./../images/lose.gif";
+import Button from "./Button";
 
 export default function PokeAgain({
   fail,
@@ -28,7 +29,7 @@ export default function PokeAgain({
         />
       )}
       <div className="flex space-x-4">
-        <button
+        {/* <button
           className="py-2 rounded-md font-black w-full border border-gray-200 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-100"
           onClick={() => {
             setFail(false);
@@ -38,18 +39,29 @@ export default function PokeAgain({
           }}
         >
           {lang.againRange}
-        </button>
-        <button
-          className="py-2 rounded-md bg-red-500 text-white w-full font-black hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
-          onClick={() => {
+        </button> */}
+        <Button
+          handleClick={() => {
+            setFail(false);
+            setFound(false);
+            setMisteryPokemon({});
+            setMenu(3);
+          }}
+          type={"secondary"}
+        >
+          {lang.againRange}
+        </Button>
+        <Button
+          handleClick={() => {
             setFail(false);
             setFound(false);
             setMisteryPokemon({});
             setMenu(1);
           }}
+          type={"primary"}
         >
           {lang.againGoAgain}
-        </button>
+        </Button>
       </div>
     </div>
   );

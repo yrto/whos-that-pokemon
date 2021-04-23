@@ -1,22 +1,35 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import "./WhosThatPokemon.css";
+import "./styles/WhosThatPokemon.css";
 
-import TvSet from "./TvSet";
-import PokeRange from "./PokeRange";
-import PokeGuess from "./PokeGuess";
-import PokeAgain from "./PokeAgain";
+import TvSet from "./components/TvSet";
+import PokeRange from "./components/PokeRange";
+import PokeGuess from "./components/PokeGuess";
+import PokeAgain from "./components/PokeAgain";
 import { MarkGithubIcon } from "@primer/octicons-react";
-import { english, portuguese } from "./langs";
+import { english, portuguese } from "./localize/langs";
 
 const WhosThatPokemonContainer = () => {
   //
   const { minRange, maxRange } = useParams();
 
-  const [minMax, setMinMax] = useState({
+  const getLangFromLocalStorage = () => {
+    const langStorage = localStorage.getItem("whos-that-language");
+    if (langStorage === "english") return english;
+    if (langStorage === "portuguese") return portuguese;
+    return english;
+  };
+
+  const langDefault = getLangFromLocalStorage();
+
+  const range = {
     min: minRange >= 1 && minRange < maxRange ? minRange : 1,
     max: maxRange <= 898 && maxRange > minRange ? maxRange : 151,
-  });
+  };
+
+  const [lang, setLang] = useState(langDefault);
+
+  const [minMax, setMinMax] = useState(range);
 
   const [misteryPokemon, setMisteryPokemon] = useState({});
 
@@ -25,16 +38,18 @@ const WhosThatPokemonContainer = () => {
   const [found, setFound] = useState(false);
   const [fail, setFail] = useState(false);
 
-  const [lang, setLang] = useState(() => {
-    const langStorage = localStorage.getItem("whos-that-language");
-    if (langStorage === "english") return english;
-    if (langStorage === "portuguese") return portuguese;
-    return english;
-  });
+  // useEffect(() => {
+  //   setMinMax(range);
+  //   // setLang(getLangFromLocalStorage());
+  // }, [range]);
 
   useEffect(() => {
     if (found) setMenu(2);
   }, [found]);
+
+  const handleChange = (event) => {
+    setGuess(event.target.value);
+  };
 
   return (
     <div className="min-h-screen p-6 flex flex-col sm:p-12 poke-background">
@@ -66,6 +81,7 @@ const WhosThatPokemonContainer = () => {
                 setFail={setFail}
                 setFound={setFound}
                 lang={lang}
+                handleChange={handleChange}
               />
             )}
             {/* 2. again */}

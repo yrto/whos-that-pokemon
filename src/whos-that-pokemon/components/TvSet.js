@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import tvSet from "./images/tv-set.png";
-import staticNoise from "./images/static-noise.gif";
-import poke1 from "./images/poke1.gif";
-import poke2 from "./images/poke2.gif";
+import tvSet from "./../images/tv-set.png";
+import staticNoise from "./../images/static-noise.gif";
+import poke1 from "./../images/poke1.gif";
+import poke2 from "./../images/poke2.gif";
 
 export default function TvSet({ misteryPokemon, found, menu, lang }) {
   //
