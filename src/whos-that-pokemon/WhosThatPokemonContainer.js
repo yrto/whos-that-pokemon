@@ -7,7 +7,7 @@ import PokeRange from "./components/PokeRange";
 import PokeGuess from "./components/PokeGuess";
 import PokeAgain from "./components/PokeAgain";
 import { MarkGithubIcon } from "@primer/octicons-react";
-import { english, portuguese } from "./localize/langs";
+import { english, portuguese } from "./locale/langs";
 
 const WhosThatPokemonContainer = () => {
   //
