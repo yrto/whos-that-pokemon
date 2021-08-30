@@ -4,7 +4,7 @@ const generatePokeApiUrl = (pokemonId) =>
 const formatPokemonData = (rawPokemonData) => ({
   id: rawPokemonData.id,
   name: rawPokemonData.name,
-  img: `https://pokeres.bastionbot.org/images/pokemon/${rawPokemonData.id}.png`,
+  img: rawPokemonData.sprites.other.dream_world.front_default
 });
 
 export const fetchCleanPokemonData = async (pokemonId) => {
