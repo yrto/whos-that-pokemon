@@ -117,9 +117,8 @@ const WhosThatPokemonContainer = () => {
                 setLang(english);
                 localStorage.setItem("whos-that-language", "english");
               }}
-              className={`font-bold focus:outline-none px-1 rounded ${
-                lang === english ? "bg-red-800 text-white" : ""
-              }`}
+              className={`font-bold focus:outline-none px-1 rounded ${lang === english ? "bg-red-800 text-white" : ""
+                }`}
             >
               EN-US
             </button>
@@ -128,9 +127,8 @@ const WhosThatPokemonContainer = () => {
                 setLang(portuguese);
                 localStorage.setItem("whos-that-language", "portuguese");
               }}
-              className={`font-bold focus:outline-none px-1 rounded ${
-                lang === portuguese ? "bg-red-800 text-white" : ""
-              }`}
+              className={`font-bold focus:outline-none px-1 rounded ${lang === portuguese ? "bg-red-800 text-white" : ""
+                }`}
             >
               PT-BR
             </button>
