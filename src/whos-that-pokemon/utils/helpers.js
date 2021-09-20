@@ -4,7 +4,8 @@ const generatePokeApiUrl = (pokemonId) =>
 const formatPokemonData = (rawPokemonData) => ({
   id: rawPokemonData.id,
   name: rawPokemonData.name,
-  img: `https://pokeres.bastionbot.org/images/pokemon/${rawPokemonData.id}.png`,
+  // img: `https://pokeres.bastionbot.org/images/pokemon/${rawPokemonData.id}.png`, // offline
+  img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${rawPokemonData.id}.png`,
 });
 
 export const fetchCleanPokemonData = async (pokemonId) => {
